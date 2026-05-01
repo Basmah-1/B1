@@ -9,15 +9,13 @@
 
 <style>
 
-* {box-sizing: border-box;}
-
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
 }
 
-/* LOADER */
+/* Loader */
 .loader {
     position: fixed;
     width: 100%;
@@ -27,22 +25,11 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 999;
-    flex-direction: column;
-}
-
-.loader span {
-    font-size: 40px;
     color: #ff4f81;
-    animation: pulse 1s infinite;
+    font-size: 30px;
 }
 
-@keyframes pulse {
-    0% {opacity: 0.5;}
-    50% {opacity: 1;}
-    100% {opacity: 0.5;}
-}
-
-/* MAIN BACKGROUND */
+/* Background */
 .main {
     height: 100vh;
     display: none;
@@ -51,6 +38,7 @@ body {
     background: linear-gradient(-45deg, #ffd6e0, #ffc0cb, #ff9eb5, #ffe4ec);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
+    position: relative;
 }
 
 @keyframes gradient {
@@ -59,6 +47,23 @@ body {
     100% {background-position: 0% 50%;}
 }
 
+/* Sparkles */
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: sparkleMove 6s linear infinite;
+}
+
+@keyframes sparkleMove {
+    from {transform: translateY(0);}
+    to {transform: translateY(-800px);}
+}
+
+/* Card */
 .container {
     width: 340px;
     background: rgba(255,255,255,0.9);
@@ -67,14 +72,12 @@ body {
     padding: 25px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    animation: fadeIn 1s ease;
 }
 
-/* LOGO STYLE */
+/* SVG LOGO */
 .logo {
-    width: 110px;
+    width: 120px;
     margin-bottom: 10px;
-    filter: drop-shadow(0 5px 10px rgba(255,105,135,0.3));
     animation: float 3s ease-in-out infinite;
 }
 
@@ -86,73 +89,31 @@ h1 {
 .bio {
     font-size: 14px;
     color: #666;
-    margin-bottom: 15px;
 }
 
-/* LINKS */
+/* Links */
 .link {
-    position: relative;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 14px 16px;
+    align-items: center;
+    padding: 14px;
     margin: 10px 0;
     border-radius: 20px;
     text-decoration: none;
     color: #fff;
-    font-weight: 500;
     background: linear-gradient(45deg, #ff6f91, #ff9a9e);
-    overflow: hidden;
     transition: 0.3s;
 }
 
 .link:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(255,105,135,0.4);
 }
 
-.link i {
-    font-size: 18px;
-}
-
-/* Ripple */
-.link::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    background: rgba(255,255,255,0.4);
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.link:active::after {
-    width: 220px;
-    height: 220px;
-    transition: 0.4s;
-}
-
-/* CTA Button */
 .cta {
     background: linear-gradient(45deg, #ff4f81, #ff85a2);
-    font-weight: bold;
 }
 
-/* FOOTER */
-.footer {
-    font-size: 12px;
-    margin-top: 10px;
-    color: #999;
-}
-
-/* ANIMATIONS */
-@keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
-}
-
+/* Animation */
 @keyframes float {
     0% {transform: translateY(0);}
     50% {transform: translateY(-10px);}
@@ -164,52 +125,58 @@ h1 {
 
 <body>
 
-<!-- Loader -->
-<div class="loader" id="loader">
-    <span>Loading...</span>
-</div>
+<div class="loader" id="loader">Loading....</div>
 
-<!-- Main -->
 <div class="main" id="main">
+
+<!-- Sparkles -->
+<script>
+for(let i=0;i<20;i++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left=Math.random()*100+"%";
+    s.style.animationDuration=(3+Math.random()*5)+"s";
+    document.body.appendChild(s);
+}
+</script>
 
 <div class="container">
 
+<div class="logo-box">
     <img src="logo.png" class="logo">
+</div>
+<h1>B Accessories</h1>
+<div class="bio">Cute Accessories 💖</div>
 
-    <h1>B Accessories</h1>
-    <div class="bio">Cute Accessories 💖</div>
+<a class="link" href="https://www.instagram.com/b.accessoris_?igsh=MTJoZzEyYjVtcWN2Mg==" target="_blank">
+<span><i class="fab fa-instagram"></i> Instagram</span>
+<i class="fas fa-arrow-right"></i>
+</a>
 
-    <a class="link" href="https://www.instagram.com/b.accessoris_?igsh=MTJoZzEyYjVtcWN2Mg==" target="_blank">
-        <span><i class="fab fa-instagram"></i> Instagram</span>
-        <i class="fas fa-arrow-right"></i>
-    </a>
+<a class="link" href="https://www.tiktok.com/@b.accessories2?_r=1&_t=ZS-95ygqTGOLwK" target="_blank">
+<span><i class="fab fa-tiktok"></i> TikTok</span>
+<i class="fas fa-arrow-right"></i>
+</a>
 
-    <a class="link" href="https://www.tiktok.com/@b.accessories2?_r=1&_t=ZS-95ygqTGOLwK" target="_blank">
-        <span><i class="fab fa-tiktok"></i> TikTok</span>
-        <i class="fas fa-arrow-right"></i>
-    </a>
+<a class="link" href="https://www.facebook.com/share/g/18n8rQMX36/?mibextid=wwXIfr" target="_blank">
+<span><i class="fab fa-facebook"></i> Facebook</span>
+<i class="fas fa-arrow-right"></i>
+</a>
 
-    <a class="link" href="https://www.facebook.com/share/g/18n8rQMX36/?mibextid=wwXIfr" target="_blank">
-        <span><i class="fab fa-facebook"></i> Facebook</span>
-        <i class="fas fa-arrow-right"></i>
-    </a>
-
-    <a class="link cta" href="https://chat.whatsapp.com/LUDRyRN6DVA5vSLurLzKF6?mode=gi_t" target="_blank">
-        <span><i class="fab fa-whatsapp"></i> Order Now</span>
-        <i class="fas fa-heart"></i>
-    </a>
-
-    <div class="footer">© B ACCESSORIES</div>
+<a class="link cta" href="https://chat.whatsapp.com/LUDRyRN6DVA5vSLurLzKF6?mode=gi_tXX" target="_blank">
+<span><i class="fab fa-whatsapp"></i> Order Now</span>
+<i class="fas fa-heart"></i>
+</a>
 
 </div>
 </div>
 
+<!-- Loader Script -->
 <script>
-setTimeout(() => {
-    document.getElementById("loader").style.display = "none";
-    document.getElementById("main").style.display = "flex";
-}, 1200);
+setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+    document.getElementById("main").style.display="flex";
+},1000);
 </script>
-
 </body>
 </html>
